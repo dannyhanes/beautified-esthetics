@@ -674,9 +674,13 @@
       html { scroll-behavior: auto; }
     }
 
+    /* Mobile-only decorations: hidden on desktop, shown under 900px */
+    .deco-m { display: none; }
+
     /* ---------- Responsive ---------- */
     @media (max-width: 900px) {
       .deco { display: none; }
+      .deco.deco-m { display: block; }
       .pillars { grid-template-columns: 1fr; gap: 22px; max-width: 420px; }
       .pillar + .pillar { border-left: none; border-top: 1px solid rgba(176, 141, 76, 0.28); padding-top: 22px; }
     }
@@ -854,6 +858,10 @@
       <svg class="deco" aria-hidden="true" style="left:-30px; top:20px; width:420px; height:160px; opacity:0.8;"><use href="#flourish" width="420" height="160"/></svg>
       <svg class="deco" aria-hidden="true" style="right:-40px; bottom:130px; width:380px; height:150px; transform:scaleX(-1); opacity:0.5;"><use href="#flourish" width="380" height="150"/></svg>
 
+      <svg class="deco deco-m" aria-hidden="true" style="left:-40px; top:-28px; width:260px; height:100px; opacity:0.45;"><use href="#flourish" width="260" height="100"/></svg>
+      <svg class="deco deco-m" aria-hidden="true" style="right:-45px; top:150px; width:140px; height:370px; transform:scaleX(-1) rotate(6deg); opacity:0.5;"><use href="#euca" width="140" height="370"/></svg>
+      <svg class="deco deco-m" aria-hidden="true" style="left:-55px; top:280px; width:150px; height:400px; transform:rotate(8deg); opacity:0.45;"><use href="#branch" width="150" height="400"/></svg>
+
       <div class="hero-inner">
         <p class="eyebrow">All-Natural Skincare &middot; Cary, North Carolina</p>
         <img class="hero-logo" src="assets/logo.png" alt="Beautified Esthetics" width="527" height="466">
@@ -909,6 +917,8 @@
     <section id="about" class="has-deco">
       <svg class="deco" aria-hidden="true" style="right:-90px; top:40px; width:220px; height:580px; transform:scaleX(-1) rotate(5deg); opacity:0.55;"><use href="#branch" width="220" height="580"/></svg>
       <svg class="deco" aria-hidden="true" style="right:-120px; bottom:-80px; width:460px; height:360px; transform:scaleX(-1);"><use href="#wash" width="460" height="360"/></svg>
+      <svg class="deco deco-m" aria-hidden="true" style="right:-45px; bottom:-35px; width:130px; height:345px; transform:scaleX(-1) rotate(10deg); opacity:0.45;"><use href="#euca" width="130" height="345"/></svg>
+      <svg class="deco deco-m" aria-hidden="true" style="left:-130px; bottom:-70px; width:300px; height:230px;"><use href="#wash" width="300" height="230"/></svg>
       <div class="wrap about-grid">
         <div class="about-photo-frame reveal">
           <img class="about-photo" src="nicole.jpeg" alt="Nicole Hardy, licensed esthetician, in her treatment room at Beautified Esthetics">
@@ -930,6 +940,7 @@
       <svg class="deco" aria-hidden="true" style="left:-80px; top:100px; width:190px; height:500px; transform:rotate(10deg); opacity:0.5;"><use href="#euca" width="190" height="500"/></svg>
       <svg class="deco" aria-hidden="true" style="left:-140px; top:-40px; width:440px; height:340px;"><use href="#wash" width="440" height="340"/></svg>
       <svg class="deco" aria-hidden="true" style="right:-60px; bottom:-20px; width:360px; height:140px; transform:scaleX(-1); opacity:0.5;"><use href="#flourish" width="360" height="140"/></svg>
+      <svg class="deco deco-m" aria-hidden="true" style="left:-55px; top:-25px; width:140px; height:370px; transform:rotate(12deg); opacity:0.4;"><use href="#branch" width="140" height="370"/></svg>
       <div class="wrap">
         <div class="section-head reveal">
           <p class="eyebrow">Facial Treatments</p>
@@ -994,6 +1005,7 @@
     <section id="waxing" class="has-deco">
       <svg class="deco" aria-hidden="true" style="right:-70px; top:120px; width:200px; height:520px; transform:scaleX(-1) rotate(8deg); opacity:0.45;"><use href="#euca" width="200" height="520"/></svg>
       <svg class="deco" aria-hidden="true" style="left:-110px; bottom:-60px; width:420px; height:330px;"><use href="#wash" width="420" height="330"/></svg>
+      <svg class="deco deco-m" aria-hidden="true" style="right:-45px; top:-20px; width:130px; height:345px; transform:scaleX(-1) rotate(9deg); opacity:0.4;"><use href="#euca" width="130" height="345"/></svg>
       <div class="wrap">
         <div class="section-head reveal">
           <p class="eyebrow">Waxing &amp; Body Treatments</p>
@@ -1061,6 +1073,7 @@
     <section id="contact" class="has-deco">
       <svg class="deco" aria-hidden="true" style="left:-90px; top:60px; width:210px; height:560px; transform:rotate(6deg); opacity:0.5;"><use href="#branch" width="210" height="560"/></svg>
       <svg class="deco" aria-hidden="true" style="right:-130px; bottom:-80px; width:440px; height:340px; transform:scaleX(-1);"><use href="#wash" width="440" height="340"/></svg>
+      <svg class="deco deco-m" aria-hidden="true" style="left:-50px; top:-20px; width:135px; height:360px; transform:rotate(7deg); opacity:0.4;"><use href="#branch" width="135" height="360"/></svg>
       <div class="wrap">
         <div class="section-head reveal">
           <p class="eyebrow">Visit Us</p>
@@ -1110,6 +1123,9 @@
       <svg class="deco" aria-hidden="true" style="left:-60px; bottom:-80px; width:230px; height:600px; transform:rotate(14deg); opacity:0.55;"><use href="#branch" width="230" height="600"/></svg>
       <svg class="deco" aria-hidden="true" style="right:-60px; bottom:-60px; width:210px; height:540px; transform:scaleX(-1) rotate(12deg); opacity:0.5;"><use href="#euca" width="210" height="540"/></svg>
       <svg class="deco" aria-hidden="true" style="right:40px; top:30px; width:380px; height:150px; transform:scaleX(-1); opacity:0.6;"><use href="#flourish" width="380" height="150"/></svg>
+      <svg class="deco deco-m" aria-hidden="true" style="left:-50px; bottom:-50px; width:140px; height:370px; transform:rotate(14deg); opacity:0.5;"><use href="#branch" width="140" height="370"/></svg>
+      <svg class="deco deco-m" aria-hidden="true" style="right:-45px; bottom:-40px; width:125px; height:330px; transform:scaleX(-1) rotate(11deg); opacity:0.45;"><use href="#euca" width="125" height="330"/></svg>
+      <svg class="deco deco-m" aria-hidden="true" style="right:-25px; top:12px; width:240px; height:95px; transform:scaleX(-1); opacity:0.5;"><use href="#flourish" width="240" height="95"/></svg>
       <div class="cta-inner reveal">
         <h2>Ready to feel your best <em>in your own skin?</em></h2>
         <div class="ornament" aria-hidden="true"><span class="diamond"></span></div>
