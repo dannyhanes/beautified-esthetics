@@ -5,21 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beautified Esthetics — All-Natural Skincare in Cary, NC</title>
   <meta name="description" content="Beautified Esthetics offers all-natural facials, dermaplaning, waxing, and infrared therapy in Cary, NC. Oncology-trained esthetician Nicole Hardy. Book online today.">
+  <meta name="theme-color" content="#faf7f0">
+  <meta property="og:title" content="Beautified Esthetics — Holistic Skincare. Whole You.">
+  <meta property="og:description" content="All-natural facials, dermaplaning, waxing, and infrared therapy in Cary, NC.">
+  <meta property="og:image" content="assets/logo.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --cream: #faf6f0;
+      --cream: #faf7f0;
       --white: #ffffff;
-      --ink: #33362e;
-      --ink-soft: #5c6053;
-      --sage: #8a9a7b;
-      --sage-deep: #66755a;
-      --gold: #c2a878;
-      --line: #e8e1d5;
+      --ink: #33403d;
+      --ink-soft: #5e6c68;
+      --teal: #4e7b80;
+      --teal-deep: #3c6165;
+      --sage: #93a98f;
+      --euca: #96adab;
+      --euca-light: #c9d8d2;
+      --gold: #b08d4c;
+      --gold-bright: #c9a45b;
+      --line: #e7e1d3;
       --radius: 18px;
-      --shadow: 0 10px 40px rgba(51, 54, 46, 0.08);
+      --shadow: 0 10px 40px rgba(51, 64, 61, 0.08);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,20 +43,31 @@
       background: var(--cream);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 400; line-height: 1.15; }
 
-    a { color: var(--sage-deep); }
+    a { color: var(--teal-deep); }
 
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    /* ---------- Decorative botanical layers ---------- */
+    .deco {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      user-select: none;
+    }
+
+    .has-deco { position: relative; overflow: hidden; }
 
     /* ---------- Header ---------- */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(250, 246, 240, 0.92);
+      background: rgba(250, 247, 240, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--line);
     }
@@ -55,20 +76,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 24px;
+      padding: 10px 24px;
       max-width: 1100px;
       margin: 0 auto;
     }
 
-    .brand {
-      font-family: 'Fraunces', serif;
-      font-size: 1.25rem;
-      letter-spacing: 0.02em;
-      text-decoration: none;
-      color: var(--ink);
-    }
+    .brand { display: inline-flex; align-items: center; text-decoration: none; }
 
-    .brand em { font-style: italic; color: var(--sage-deep); }
+    .brand-logo { height: 58px; width: auto; display: block; }
 
     .nav-links { display: flex; align-items: center; gap: 28px; }
 
@@ -80,11 +95,11 @@
       transition: color 0.2s;
     }
 
-    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover { color: var(--teal-deep); }
 
     .btn {
       display: inline-block;
-      background: var(--sage-deep);
+      background: var(--teal-deep);
       color: var(--white) !important;
       padding: 12px 28px;
       border-radius: 999px;
@@ -92,18 +107,22 @@
       font-weight: 500;
       font-size: 0.95rem;
       letter-spacing: 0.03em;
-      transition: background 0.2s, transform 0.2s;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     }
 
-    .btn:hover { background: var(--sage); transform: translateY(-1px); }
+    .btn:hover {
+      background: var(--teal);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(60, 97, 101, 0.25);
+    }
 
     .btn-outline {
       background: transparent;
-      color: var(--sage-deep) !important;
-      border: 1.5px solid var(--sage-deep);
+      color: var(--teal-deep) !important;
+      border: 1.5px solid var(--teal-deep);
     }
 
-    .btn-outline:hover { background: var(--sage-deep); color: var(--white) !important; }
+    .btn-outline:hover { background: var(--teal-deep); color: var(--white) !important; }
 
     .menu-toggle {
       display: none;
@@ -123,33 +142,72 @@
 
     /* ---------- Hero ---------- */
     .hero {
-      padding: 110px 24px 90px;
+      position: relative;
+      overflow: hidden;
+      padding: 84px 24px 0;
       text-align: center;
       background:
-        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(138, 154, 123, 0.14), transparent),
+        radial-gradient(ellipse 55% 45% at 12% 18%, rgba(150, 173, 171, 0.16), transparent),
+        radial-gradient(ellipse 45% 40% at 92% 70%, rgba(147, 169, 143, 0.13), transparent),
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(176, 141, 76, 0.06), transparent),
         var(--cream);
     }
 
+    .hero-inner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+
     .hero .eyebrow {
       text-transform: uppercase;
-      letter-spacing: 0.28em;
-      font-size: 0.78rem;
+      letter-spacing: 0.32em;
+      font-size: 0.76rem;
       font-weight: 500;
       color: var(--gold);
-      margin-bottom: 22px;
+      margin-bottom: 30px;
+    }
+
+    .hero-logo {
+      width: min(400px, 78vw);
+      height: auto;
+      display: block;
+      margin: 0 auto 34px;
+      filter: drop-shadow(0 12px 32px rgba(60, 97, 101, 0.10));
     }
 
     .hero h1 {
-      font-size: clamp(2.4rem, 6vw, 4.2rem);
-      font-weight: 300;
-      max-width: 760px;
-      margin: 0 auto 24px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      font-size: clamp(1.05rem, 2.6vw, 1.5rem);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      margin-bottom: 26px;
     }
 
-    .hero h1 em { font-style: italic; color: var(--sage-deep); }
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 0 auto 28px;
+    }
 
-    .hero p {
-      max-width: 560px;
+    .ornament::before, .ornament::after {
+      content: '';
+      height: 1px;
+      width: 74px;
+      background: linear-gradient(90deg, transparent, var(--gold-bright));
+    }
+
+    .ornament::after { background: linear-gradient(90deg, var(--gold-bright), transparent); }
+
+    .ornament .diamond {
+      width: 7px;
+      height: 7px;
+      background: var(--gold-bright);
+      transform: rotate(45deg);
+    }
+
+    .hero p.lede {
+      max-width: 580px;
       margin: 0 auto 38px;
       color: var(--ink-soft);
       font-size: 1.1rem;
@@ -157,22 +215,72 @@
 
     .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-    .hero-badges {
-      margin-top: 64px;
-      display: flex;
-      justify-content: center;
+    /* Pillar strip */
+    .pillars {
+      margin: 70px auto 0;
+      max-width: 1020px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(150, 173, 171, 0.35);
+      box-shadow: 0 8px 30px rgba(51, 64, 61, 0.05);
+      border-radius: var(--radius);
+      padding: 28px 20px;
       gap: 12px;
-      flex-wrap: wrap;
     }
 
-    .badge {
-      border: 1px solid var(--line);
-      background: var(--white);
-      border-radius: 999px;
-      padding: 8px 20px;
-      font-size: 0.85rem;
-      color: var(--ink-soft);
+    .pillar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: center;
+      text-align: left;
+      padding: 0 10px;
     }
+
+    .pillar + .pillar { border-left: 1px solid rgba(176, 141, 76, 0.28); }
+
+    .pillar-icon {
+      flex: none;
+      width: 52px;
+      height: 52px;
+      border: 1.4px solid var(--gold-bright);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .pillar-icon svg { width: 26px; height: 26px; }
+
+    .pillar h3 { font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 0.98rem; color: var(--ink); }
+
+    .pillar p { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.4; }
+
+    /* Mantra strip */
+    .mantra {
+      margin-top: 56px;
+      border-top: 1px solid var(--line);
+      padding: 22px 12px 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px 26px;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.74rem;
+      font-weight: 500;
+      color: var(--teal);
+    }
+
+    .mantra .leafmark { color: var(--gold-bright); display: inline-flex; }
+
+    .mantra .leafmark svg { width: 18px; height: 12px; }
 
     /* ---------- Sections ---------- */
     section { padding: 90px 0; }
@@ -190,6 +298,10 @@
 
     .section-head h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 300; }
 
+    .section-head h2 em, .about-copy h2 em { font-style: italic; color: var(--teal); }
+
+    .section-head .leaf-divider { margin: 18px auto 0; display: block; width: 120px; height: 24px; }
+
     .section-head p { max-width: 620px; margin: 18px auto 0; color: var(--ink-soft); }
 
     /* ---------- About ---------- */
@@ -202,11 +314,50 @@
       align-items: center;
     }
 
+    .about-photo-frame { position: relative; }
+
     .about-photo {
       width: 100%;
       display: block;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: -16px auto auto -16px;
+      width: 60%;
+      height: 60%;
+      border: 1.4px solid var(--gold-bright);
+      border-radius: var(--radius);
+      border-right: none;
+      border-bottom: none;
+      opacity: 0.7;
+    }
+
+    .about-photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: auto -16px -16px auto;
+      width: 60%;
+      height: 60%;
+      border: 1.4px solid var(--gold-bright);
+      border-radius: var(--radius);
+      border-left: none;
+      border-top: none;
+      opacity: 0.7;
+    }
+
+    .about-copy .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 14px;
     }
 
     .about-copy h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 300; margin-bottom: 20px; }
@@ -217,8 +368,8 @@
       font-family: 'Fraunces', serif;
       font-style: italic;
       font-size: 1.25rem;
-      color: var(--sage-deep);
-      border-left: 3px solid var(--gold);
+      color: var(--teal);
+      border-left: 3px solid var(--gold-bright);
       padding-left: 20px;
       margin: 28px 0;
     }
@@ -237,26 +388,45 @@
       padding: 32px;
       display: flex;
       flex-direction: column;
-      transition: transform 0.25s, box-shadow 0.25s;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative;
+      overflow: hidden;
     }
 
-    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .card::after {
+      content: '';
+      position: absolute;
+      right: -22px;
+      bottom: -26px;
+      width: 110px;
+      height: 110px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 92 C 30 70 32 40 50 12 C 68 40 70 70 50 92 Z' fill='none' stroke='%2396adab' stroke-width='1.6'/%3E%3Cpath d='M50 88 L 50 22 M50 62 C 42 56 38 48 38 40 M50 62 C 58 56 62 48 62 40 M50 46 C 44 42 41 36 41 30 M50 46 C 56 42 59 36 59 30' fill='none' stroke='%2396adab' stroke-width='1.2'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.16;
+      transform: rotate(24deg);
+      transition: opacity 0.25s;
+    }
 
-    .card.featured { border-color: var(--gold); position: relative; }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--euca); }
+
+    .card:hover::after { opacity: 0.3; }
+
+    .card.featured { border-color: var(--gold-bright); }
 
     .card.featured::before {
       content: 'Signature';
       position: absolute;
-      top: -12px;
-      left: 28px;
-      background: var(--gold);
+      top: 0;
+      right: 0;
+      background: linear-gradient(120deg, var(--gold-bright), var(--gold));
       color: var(--white);
       font-size: 0.72rem;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 4px 14px;
-      border-radius: 999px;
+      padding: 5px 16px;
+      border-radius: 0 var(--radius) 0 14px;
     }
 
     .card h3 { font-size: 1.35rem; margin-bottom: 6px; }
@@ -268,11 +438,11 @@
       margin-bottom: 14px;
     }
 
-    .card .price { font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--sage-deep); }
+    .card .price { font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--teal); }
 
     .card .duration { font-size: 0.85rem; color: var(--ink-soft); letter-spacing: 0.05em; }
 
-    .card p { color: var(--ink-soft); font-size: 0.95rem; flex: 1; }
+    .card p { color: var(--ink-soft); font-size: 0.95rem; flex: 1; position: relative; z-index: 1; }
 
     .card .book-link {
       margin-top: 20px;
@@ -280,6 +450,8 @@
       font-weight: 500;
       text-decoration: none;
       letter-spacing: 0.04em;
+      position: relative;
+      z-index: 1;
     }
 
     .card .book-link:hover { text-decoration: underline; }
@@ -322,7 +494,9 @@
 
     /* ---------- Infrared banner ---------- */
     .infrared {
-      background: linear-gradient(140deg, #3f4437, #5a654c);
+      background:
+        radial-gradient(ellipse 70% 90% at 100% 0%, rgba(201, 164, 91, 0.14), transparent),
+        linear-gradient(140deg, #33534f, #4e7b80);
       border-radius: calc(var(--radius) + 6px);
       color: var(--cream);
       padding: 64px 48px;
@@ -330,16 +504,31 @@
       grid-template-columns: 1.4fr 1fr;
       gap: 40px;
       align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .infrared .deco { opacity: 0.2; }
+
+    .infrared > div { position: relative; z-index: 1; }
+
+    .infrared .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--gold-bright);
+      margin-bottom: 14px;
     }
 
     .infrared h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 300; margin-bottom: 16px; }
 
-    .infrared p { color: rgba(250, 246, 240, 0.82); margin-bottom: 0; }
+    .infrared p { color: rgba(250, 247, 240, 0.82); margin-bottom: 0; }
 
     .infrared .pricing {
       text-align: center;
       background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(201, 164, 91, 0.4);
       border-radius: var(--radius);
       padding: 32px;
     }
@@ -350,7 +539,7 @@
       display: block;
     }
 
-    .infrared .pricing .per { font-size: 0.9rem; color: rgba(250, 246, 240, 0.75); }
+    .infrared .pricing .per { font-size: 0.9rem; color: rgba(250, 247, 240, 0.75); }
 
     .infrared .pricing .package {
       margin-top: 14px;
@@ -420,48 +609,86 @@
       height: 44px;
       border-radius: 50%;
       border: 1.5px solid var(--line);
-      color: var(--sage-deep);
+      color: var(--teal-deep);
       transition: border-color 0.2s, background 0.2s;
     }
 
-    .socials a:hover { border-color: var(--sage-deep); background: var(--cream); }
+    .socials a:hover { border-color: var(--teal-deep); background: var(--cream); }
 
     .socials svg { width: 20px; height: 20px; fill: currentColor; }
 
     /* ---------- CTA ---------- */
     .cta {
       text-align: center;
-      padding: 100px 24px;
+      padding: 110px 24px;
+      position: relative;
+      overflow: hidden;
       background:
-        radial-gradient(ellipse 60% 60% at 50% 100%, rgba(194, 168, 120, 0.12), transparent),
+        radial-gradient(ellipse 50% 55% at 8% 80%, rgba(150, 173, 171, 0.15), transparent),
+        radial-gradient(ellipse 50% 55% at 94% 30%, rgba(147, 169, 143, 0.13), transparent),
+        radial-gradient(ellipse 60% 60% at 50% 100%, rgba(176, 141, 76, 0.10), transparent),
         var(--cream);
     }
 
+    .cta-inner { position: relative; z-index: 1; }
+
     .cta h2 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 300; margin-bottom: 18px; }
 
-    .cta h2 em { font-style: italic; color: var(--sage-deep); }
+    .cta h2 em { font-style: italic; color: var(--teal); }
 
     .cta p { color: var(--ink-soft); max-width: 520px; margin: 0 auto 36px; }
 
     /* ---------- Footer ---------- */
     footer {
       border-top: 1px solid var(--line);
-      padding: 36px 24px;
+      padding: 48px 24px 36px;
       text-align: center;
       font-size: 0.88rem;
       color: var(--ink-soft);
     }
 
-    footer .brand { font-size: 1.05rem; display: block; margin-bottom: 8px; }
+    .footer-logo { height: 96px; width: auto; margin-bottom: 18px; }
+
+    .footer-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 20px;
+    }
+
+    .footer-dots span { border-radius: 50%; background: var(--gold-bright); display: block; }
+
+    .footer-dots span:nth-child(1) { width: 8px; height: 8px; }
+    .footer-dots span:nth-child(2) { width: 6px; height: 6px; }
+    .footer-dots span:nth-child(3) { width: 5px; height: 5px; }
+    .footer-dots span:nth-child(4) { width: 4px; height: 4px; }
+
+    /* ---------- Reveal animation ---------- */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
 
     /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .deco { display: none; }
+      .pillars { grid-template-columns: 1fr; gap: 22px; max-width: 420px; }
+      .pillar + .pillar { border-left: none; border-top: 1px solid rgba(176, 141, 76, 0.28); padding-top: 22px; }
+    }
+
     @media (max-width: 820px) {
       .about-grid, .contact-grid, .infrared { grid-template-columns: 1fr; }
-      .about-photo { max-width: 380px; margin: 0 auto; display: block; }
+      .about-photo-frame { max-width: 380px; margin: 0 auto; }
       .nav-links a:not(.btn) { display: none; }
       .nav-links .btn { padding: 10px 20px; font-size: 0.88rem; }
+      .brand-logo { height: 48px; }
       section { padding: 64px 0; }
-      .hero { padding: 72px 24px 64px; }
+      .hero { padding: 56px 24px 0; }
       .infrared { padding: 44px 28px; }
 
       .menu-toggle { display: block; }
@@ -497,9 +724,103 @@
 </head>
 <body>
 
+  <!-- Shared SVG defs: watercolor foliage, gold flourishes, ornaments -->
+  <svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+    <defs>
+      <linearGradient id="leaf-a" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#b6cac9"/>
+        <stop offset="1" stop-color="#8ba5a0"/>
+      </linearGradient>
+      <linearGradient id="leaf-b" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#c9d8cb"/>
+        <stop offset="1" stop-color="#93a98f"/>
+      </linearGradient>
+      <linearGradient id="leaf-c" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#a9c4bd"/>
+        <stop offset="1" stop-color="#718d8b"/>
+      </linearGradient>
+      <linearGradient id="gold-grad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d8b56a"/>
+        <stop offset="0.5" stop-color="#b08d4c"/>
+        <stop offset="1" stop-color="#d8b56a"/>
+      </linearGradient>
+      <radialGradient id="wash-grad" cx="0.4" cy="0.4" r="0.65">
+        <stop offset="0" stop-color="#a9c4bd" stop-opacity="0.55"/>
+        <stop offset="0.7" stop-color="#b6cac9" stop-opacity="0.25"/>
+        <stop offset="1" stop-color="#b6cac9" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="soft-blur" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="1.4"/>
+      </filter>
+      <filter id="wash-blur" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="22"/>
+      </filter>
+
+      <!-- Long-leaf watercolor branch (echoes the logo laurel) -->
+      <symbol id="branch" viewBox="0 0 240 640">
+        <path d="M150 630 C 118 480 100 300 118 24" fill="none" stroke="#8fa48f" stroke-width="2.4" opacity="0.5"/>
+        <g transform="translate(146 585) rotate(-160)"><ellipse cx="33" cy="0" rx="33" ry="11" fill="url(#leaf-a)" opacity="0.55"/></g>
+        <g transform="translate(138 545) rotate(-25)"><ellipse cx="36" cy="0" rx="36" ry="12" fill="url(#leaf-b)" opacity="0.75" filter="url(#soft-blur)"/></g>
+        <g transform="translate(128 500) rotate(-158)"><ellipse cx="38" cy="0" rx="38" ry="12" fill="url(#leaf-c)" opacity="0.6"/></g>
+        <g transform="translate(122 455) rotate(-28)"><ellipse cx="32" cy="0" rx="32" ry="10" fill="url(#leaf-a)" opacity="0.8"/></g>
+        <g transform="translate(114 410) rotate(-155)"><ellipse cx="35" cy="0" rx="35" ry="11" fill="url(#leaf-b)" opacity="0.5" filter="url(#soft-blur)"/></g>
+        <g transform="translate(110 362) rotate(-30)"><ellipse cx="37" cy="0" rx="37" ry="12" fill="url(#leaf-c)" opacity="0.7"/></g>
+        <g transform="translate(106 315) rotate(-152)"><ellipse cx="33" cy="0" rx="33" ry="10" fill="url(#leaf-a)" opacity="0.75"/></g>
+        <g transform="translate(105 268) rotate(-32)"><ellipse cx="34" cy="0" rx="34" ry="11" fill="url(#leaf-b)" opacity="0.55" filter="url(#soft-blur)"/></g>
+        <g transform="translate(106 220) rotate(-150)"><ellipse cx="36" cy="0" rx="36" ry="11" fill="url(#leaf-c)" opacity="0.65"/></g>
+        <g transform="translate(108 172) rotate(-35)"><ellipse cx="31" cy="0" rx="31" ry="10" fill="url(#leaf-a)" opacity="0.8"/></g>
+        <g transform="translate(111 124) rotate(-148)"><ellipse cx="30" cy="0" rx="30" ry="9" fill="url(#leaf-b)" opacity="0.6" filter="url(#soft-blur)"/></g>
+        <g transform="translate(114 76) rotate(-38)"><ellipse cx="28" cy="0" rx="28" ry="9" fill="url(#leaf-c)" opacity="0.7"/></g>
+        <g transform="translate(117 36) rotate(-95)"><ellipse cx="24" cy="0" rx="24" ry="8" fill="url(#leaf-a)" opacity="0.85"/></g>
+      </symbol>
+
+      <!-- Round-leaf eucalyptus sprig (echoes the header art) -->
+      <symbol id="euca" viewBox="0 0 160 420">
+        <path d="M84 415 C 70 320 66 200 78 15" fill="none" stroke="#96adab" stroke-width="2" opacity="0.55"/>
+        <circle cx="68" cy="378" r="15" fill="url(#leaf-a)" opacity="0.6"/>
+        <circle cx="88" cy="350" r="13" fill="url(#leaf-b)" opacity="0.75"/>
+        <circle cx="60" cy="316" r="16" fill="url(#leaf-c)" opacity="0.5" filter="url(#soft-blur)"/>
+        <circle cx="83" cy="285" r="14" fill="url(#leaf-a)" opacity="0.8"/>
+        <circle cx="57" cy="250" r="15" fill="url(#leaf-b)" opacity="0.6"/>
+        <circle cx="81" cy="217" r="13" fill="url(#leaf-c)" opacity="0.7" filter="url(#soft-blur)"/>
+        <circle cx="58" cy="182" r="14" fill="url(#leaf-a)" opacity="0.75"/>
+        <circle cx="83" cy="148" r="13" fill="url(#leaf-b)" opacity="0.55"/>
+        <circle cx="62" cy="113" r="13" fill="url(#leaf-c)" opacity="0.7"/>
+        <circle cx="86" cy="81" r="12" fill="url(#leaf-a)" opacity="0.6" filter="url(#soft-blur)"/>
+        <circle cx="76" cy="45" r="12" fill="url(#leaf-b)" opacity="0.8"/>
+      </symbol>
+
+      <!-- Thin gold flourish line -->
+      <symbol id="flourish" viewBox="0 0 420 160">
+        <path d="M2 120 C 90 20 180 150 300 60 C 350 25 390 30 418 44" fill="none" stroke="url(#gold-grad)" stroke-width="1.6" opacity="0.8"/>
+        <path d="M40 152 C 140 92 240 142 416 96" fill="none" stroke="url(#gold-grad)" stroke-width="1.1" opacity="0.45"/>
+      </symbol>
+
+      <!-- Soft watercolor wash blob -->
+      <symbol id="wash" viewBox="0 0 400 320">
+        <ellipse cx="200" cy="160" rx="185" ry="140" fill="url(#wash-grad)" filter="url(#wash-blur)"/>
+      </symbol>
+
+      <!-- Two-leaf + gold dot divider (echoes the header wordmark divider) -->
+      <symbol id="leaf-divider" viewBox="0 0 120 24">
+        <path d="M52 12 C 40 4 24 2 10 9 C 24 17 40 16 52 12 Z" fill="url(#leaf-c)" opacity="0.85"/>
+        <path d="M68 12 C 80 4 96 2 110 9 C 96 17 80 16 68 12 Z" fill="url(#leaf-c)" opacity="0.85"/>
+        <circle cx="60" cy="12" r="3" fill="url(#gold-grad)"/>
+      </symbol>
+
+      <!-- Small gold leaf pair for the mantra strip -->
+      <symbol id="leafmark" viewBox="0 0 36 24">
+        <path d="M17 12 C 12 6 6 4 1 8 C 6 14 12 14 17 12 Z" fill="currentColor"/>
+        <path d="M19 12 C 24 6 30 4 35 8 C 30 14 24 14 19 12 Z" fill="currentColor"/>
+      </symbol>
+    </defs>
+  </svg>
+
   <header>
     <nav class="nav">
-      <a class="brand" href="#top">Beautified <em>Esthetics</em></a>
+      <a class="brand" href="#top" aria-label="Beautified Esthetics — home">
+        <img class="brand-logo" src="assets/logo.png" alt="Beautified Esthetics">
+      </a>
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#services">Facials</a>
@@ -524,79 +845,145 @@
 
     <!-- Hero -->
     <div class="hero">
-      <p class="eyebrow">All-Natural Skincare &middot; Cary, NC</p>
-      <h1>A passion for helping you feel your best <em>in your own skin</em></h1>
-      <p>Professional facials, dermaplaning, waxing, and infrared therapy — powered by RAYA all-natural skincare and guided by an oncology-trained esthetician.</p>
-      <div class="hero-actions">
-        <a class="btn" href="https://squareup.com/appointments/book/ETTYAME6MD66Q" target="_blank" rel="noopener">Book an Appointment</a>
-        <a class="btn btn-outline" href="#services">View Services</a>
+      <svg class="deco" aria-hidden="true" style="left:-120px; top:-60px; width:520px; height:420px;"><use href="#wash" width="520" height="420"/></svg>
+      <svg class="deco" aria-hidden="true" style="left:-70px; top:30px; width:300px; height:800px; transform:rotate(8deg);"><use href="#branch" width="300" height="800"/></svg>
+      <svg class="deco" aria-hidden="true" style="left:150px; bottom:-40px; width:170px; height:450px; transform:rotate(-14deg); opacity:0.7;"><use href="#euca" width="170" height="450"/></svg>
+      <svg class="deco" aria-hidden="true" style="right:-140px; top:-30px; width:560px; height:440px; transform:scaleX(-1);"><use href="#wash" width="560" height="440"/></svg>
+      <svg class="deco" aria-hidden="true" style="right:-50px; top:10px; width:230px; height:600px; transform:scaleX(-1) rotate(6deg);"><use href="#euca" width="230" height="600"/></svg>
+      <svg class="deco" aria-hidden="true" style="right:120px; bottom:-60px; width:250px; height:660px; transform:scaleX(-1) rotate(-10deg); opacity:0.55;"><use href="#branch" width="250" height="660"/></svg>
+      <svg class="deco" aria-hidden="true" style="left:-30px; top:20px; width:420px; height:160px; opacity:0.8;"><use href="#flourish" width="420" height="160"/></svg>
+      <svg class="deco" aria-hidden="true" style="right:-40px; bottom:130px; width:380px; height:150px; transform:scaleX(-1); opacity:0.5;"><use href="#flourish" width="380" height="150"/></svg>
+
+      <div class="hero-inner">
+        <p class="eyebrow">All-Natural Skincare &middot; Cary, North Carolina</p>
+        <img class="hero-logo" src="assets/logo.png" alt="Beautified Esthetics" width="527" height="466">
+        <h1>Holistic Skincare. Whole You.</h1>
+        <div class="ornament" aria-hidden="true"><span class="diamond"></span></div>
+        <p class="lede">Thoughtful facials, dermaplaning, waxing, and infrared therapy that nurture your skin, calm your mind, and restore your natural glow &mdash; powered by RAYA all-natural skincare and guided by an oncology-trained esthetician.</p>
+        <div class="hero-actions">
+          <a class="btn" href="https://squareup.com/appointments/book/ETTYAME6MD66Q" target="_blank" rel="noopener">Book an Appointment</a>
+          <a class="btn btn-outline" href="#services">View Services</a>
+        </div>
+
+        <div class="pillars reveal">
+          <div class="pillar">
+            <span class="pillar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21 C 5.5 15.5 6 7.5 12 3 C 18 7.5 18.5 15.5 12 21 Z"/><path d="M12 21 L 12 9 M12 15 C 9.5 13.5 8.5 11.5 8.5 9.5 M12 12 C 14 11 15 9.5 15 7.8"/></svg>
+            </span>
+            <div>
+              <h3>Holistic Skincare</h3>
+              <p>Nourish. Support. Glow.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <span class="pillar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18 C 9 15.5 8.5 11 12 7 C 15.5 11 15 15.5 12 18 Z"/><path d="M12 18 C 8 18 5 15.5 4 12.5 C 7.5 12 10 13.5 12 18 Z"/><path d="M12 18 C 16 18 19 15.5 20 12.5 C 16.5 12 14 13.5 12 18 Z"/><path d="M5 21 C 7 20 9.5 19.5 12 19.5 C 14.5 19.5 17 20 19 21"/></svg>
+            </span>
+            <div>
+              <h3>Relax &amp; Restore</h3>
+              <p>Unwind. Rebalance. Renew.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <span class="pillar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21 L 12 8"/><path d="M12 12 C 8 12 5 9.5 4.5 5.5 C 8.5 5.5 11.5 8 12 12 Z"/><path d="M12 9 C 15.5 9 18.5 7 19.5 3.5 C 15.5 3.5 12.5 5.5 12 9 Z"/><path d="M8 21 L 16 21"/></svg>
+            </span>
+            <div>
+              <h3>Rooted in Nature</h3>
+              <p>Clean. Conscious. Compassionate.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="hero-badges">
-        <span class="badge">Oncology-Trained</span>
-        <span class="badge">RAYA All-Natural Products</span>
-        <span class="badge">Infrared &amp; Chromotherapy</span>
+
+      <div class="mantra" aria-hidden="false">
+        <span>Skincare is Self-Care</span>
+        <span class="leafmark" aria-hidden="true"><svg viewBox="0 0 36 24"><use href="#leafmark"/></svg></span>
+        <span>Glow Naturally</span>
+        <span class="leafmark" aria-hidden="true"><svg viewBox="0 0 36 24"><use href="#leafmark"/></svg></span>
+        <span>Live Beautifully</span>
       </div>
     </div>
 
     <!-- About -->
-    <section id="about">
+    <section id="about" class="has-deco">
+      <svg class="deco" aria-hidden="true" style="right:-90px; top:40px; width:220px; height:580px; transform:scaleX(-1) rotate(5deg); opacity:0.55;"><use href="#branch" width="220" height="580"/></svg>
+      <svg class="deco" aria-hidden="true" style="right:-120px; bottom:-80px; width:460px; height:360px; transform:scaleX(-1);"><use href="#wash" width="460" height="360"/></svg>
       <div class="wrap about-grid">
-        <img class="about-photo" src="nicole.jpeg" alt="Nicole Hardy, licensed esthetician, in her treatment room at Beautified Esthetics">
+        <div class="about-photo-frame reveal">
+          <img class="about-photo" src="nicole.jpeg" alt="Nicole Hardy, licensed esthetician, in her treatment room at Beautified Esthetics">
+        </div>
 
-        <div class="about-copy">
-          <p class="eyebrow" style="text-transform:uppercase; letter-spacing:0.28em; font-size:0.75rem; font-weight:500; color:var(--gold); margin-bottom:14px;">Meet Your Esthetician</p>
+        <div class="about-copy reveal">
+          <p class="eyebrow">Meet Your Esthetician</p>
           <h2>Nicole Hardy</h2>
           <p>Nicole is the heart of Beautified Esthetics, an all-natural skincare clinic in Cary, North Carolina. She is oncology-trained and experienced with medically compromised skin, proudly caring for cancer patients and their care teams with gentle, safe modalities.</p>
-          <p>Her approach is educational first: establish healthy, balanced skin, then address your specific concerns at the cellular level. Every treatment features RAYA All-Natural Skincare — developed and manufactured in Los Angeles with the highest-quality ingredients and time-honored techniques.</p>
-          <p class="quote">&ldquo;SELF care isn&rsquo;t selfish — it is VITAL!&rdquo;</p>
+          <p>Her approach is educational first: establish healthy, balanced skin, then address your specific concerns at the cellular level. Every treatment features RAYA All-Natural Skincare &mdash; developed and manufactured in Los Angeles with the highest-quality ingredients and time-honored techniques.</p>
+          <p class="quote">&ldquo;SELF care isn&rsquo;t selfish &mdash; it is VITAL!&rdquo;</p>
           <p>When she isn&rsquo;t in the treatment room, Nicole is spending time outdoors with her husband and three sons, or exploring great food.</p>
         </div>
       </div>
     </section>
 
     <!-- Facials -->
-    <section id="services">
+    <section id="services" class="has-deco">
+      <svg class="deco" aria-hidden="true" style="left:-80px; top:100px; width:190px; height:500px; transform:rotate(10deg); opacity:0.5;"><use href="#euca" width="190" height="500"/></svg>
+      <svg class="deco" aria-hidden="true" style="left:-140px; top:-40px; width:440px; height:340px;"><use href="#wash" width="440" height="340"/></svg>
+      <svg class="deco" aria-hidden="true" style="right:-60px; bottom:-20px; width:360px; height:140px; transform:scaleX(-1); opacity:0.5;"><use href="#flourish" width="360" height="140"/></svg>
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head reveal">
           <p class="eyebrow">Facial Treatments</p>
-          <h2>Facials, customized for your skin</h2>
+          <h2>Facials, customized <em>for your skin</em></h2>
+          <svg class="leaf-divider" aria-hidden="true" viewBox="0 0 120 24"><use href="#leaf-divider"/></svg>
           <p>Every facial is tailored to you using all-natural products. For best results, professional facials are recommended every 3&ndash;4 weeks to support your skin&rsquo;s natural cell cycle.</p>
         </div>
         <div class="cards">
-          <div class="card featured">
+          <div class="card featured reveal">
             <h3>Bring Back the Youth</h3>
-            <div class="meta"><span class="price">$140</span><span class="duration">60&ndash;75 min</span></div>
-            <p>A fully customizable, all-natural treatment for mature skin — targeting hyperpigmentation, fine lines, dullness, and collagen loss. Includes a relaxing massage add-on.</p>
+            <div class="meta"><span class="price">$140</span><span class="duration">75 min</span></div>
+            <p>A fully customizable, all-natural treatment for mature skin &mdash; targeting hyperpigmentation, fine lines, dullness, and collagen loss. Includes a relaxing massage add-on.</p>
             <a class="book-link" href="https://squareup.com/appointments/book/ETTYAME6MD66Q" target="_blank" rel="noopener">Book this facial &rarr;</a>
           </div>
-          <div class="card">
+          <div class="card reveal">
             <h3>Maintain the Glow</h3>
             <div class="meta"><span class="price">$115</span><span class="duration">55 min</span></div>
             <p>Suitable for all skin types. A customizable treatment with natural products, finished with a soothing hand, arm, and foot massage.</p>
             <a class="book-link" href="https://squareup.com/appointments/book/ETTYAME6MD66Q" target="_blank" rel="noopener">Book this facial &rarr;</a>
           </div>
-          <div class="card">
+          <div class="card reveal">
             <h3>Confidence Builder</h3>
-            <div class="meta"><span class="price">$90</span><span class="duration">45 min</span></div>
+            <div class="meta"><span class="price">$90</span><span class="duration">50 min</span></div>
             <p>Targets acne and blemishes using gentle exfoliation and oxygen infusion to eliminate bacteria and calm the skin.</p>
             <a class="book-link" href="https://squareup.com/appointments/book/ETTYAME6MD66Q" target="_blank" rel="noopener">Book this facial &rarr;</a>
           </div>
-          <div class="card">
+          <div class="card reveal">
             <h3>Keep the Masculinity</h3>
             <div class="meta"><span class="price">$90</span><span class="duration">50 min</span></div>
             <p>A cleansing and exfoliating treatment designed for men, promoting clear, hydrated, healthy skin.</p>
             <a class="book-link" href="https://squareup.com/appointments/book/ETTYAME6MD66Q" target="_blank" rel="noopener">Book this facial &rarr;</a>
           </div>
-          <div class="card">
+          <div class="card reveal">
             <h3>Lunch Break Getaway</h3>
             <div class="meta"><span class="price">$60</span><span class="duration">30 min</span></div>
-            <p>A quick, targeted facial designed for busy schedules — real results in half an hour.</p>
+            <p>A quick, targeted facial designed for busy schedules &mdash; real results in half an hour.</p>
             <a class="book-link" href="https://squareup.com/appointments/book/ETTYAME6MD66Q" target="_blank" rel="noopener">Book this facial &rarr;</a>
           </div>
-          <div class="card">
+          <div class="card reveal">
             <h3>Dermaplane</h3>
-            <div class="meta"><span class="price">$170</span><span class="duration">75 min</span></div>
-            <p>Medical-grade scalpel exfoliation that removes dead skin and facial hair for an instantly smooth, radiant complexion — with no downtime.</p>
+            <div class="meta"><span class="price">$95</span><span class="duration">35 min</span></div>
+            <p>Medical-grade scalpel exfoliation that removes dead skin and facial hair for an instantly smooth, radiant complexion &mdash; with no downtime.</p>
+            <a class="book-link" href="https://squareup.com/appointments/book/ETTYAME6MD66Q" target="_blank" rel="noopener">Book this facial &rarr;</a>
+          </div>
+          <div class="card reveal">
+            <h3>Derma + Peel</h3>
+            <div class="meta"><span class="price">$130</span><span class="duration">55 min</span></div>
+            <p>Dermaplaning paired with a professional peel for deeper exfoliation and renewal &mdash; smooth, bright, refreshed skin in a single visit.</p>
+            <a class="book-link" href="https://squareup.com/appointments/book/ETTYAME6MD66Q" target="_blank" rel="noopener">Book this facial &rarr;</a>
+          </div>
+          <div class="card reveal">
+            <h3>Angel Touch &mdash; Oncology Facial</h3>
+            <div class="meta"><span class="price">$70</span><span class="duration">50 min</span></div>
+            <p>A gentle, nurturing facial designed for those undergoing or recovering from cancer treatment, using safe, soothing, all-natural modalities.</p>
             <a class="book-link" href="https://squareup.com/appointments/book/ETTYAME6MD66Q" target="_blank" rel="noopener">Book this facial &rarr;</a>
           </div>
         </div>
@@ -604,25 +991,32 @@
     </section>
 
     <!-- Waxing & Body -->
-    <section id="waxing">
+    <section id="waxing" class="has-deco">
+      <svg class="deco" aria-hidden="true" style="right:-70px; top:120px; width:200px; height:520px; transform:scaleX(-1) rotate(8deg); opacity:0.45;"><use href="#euca" width="200" height="520"/></svg>
+      <svg class="deco" aria-hidden="true" style="left:-110px; bottom:-60px; width:420px; height:330px;"><use href="#wash" width="420" height="330"/></svg>
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head reveal">
           <p class="eyebrow">Waxing &amp; Body Treatments</p>
-          <h2>Smooth, refreshed, renewed</h2>
+          <h2>Smooth, refreshed, <em>renewed</em></h2>
+          <svg class="leaf-divider" aria-hidden="true" viewBox="0 0 120 24"><use href="#leaf-divider"/></svg>
         </div>
         <div class="price-columns">
-          <div class="price-group">
+          <div class="price-group reveal">
             <h3>Lash &amp; Brow</h3>
-            <div class="price-row"><span>Brow Tint</span><span class="dots"></span><span class="amount">$20</span></div>
-            <div class="price-row"><span>Lash Tint</span><span class="dots"></span><span class="amount">$20</span></div>
-            <div class="price-row"><span>Lash Lift</span><span class="dots"></span><span class="amount">$80&ndash;$95</span></div>
+            <div class="price-row"><span>Brow Tint</span><span class="dots"></span><span class="amount">$25</span></div>
+            <div class="price-row"><span>Lash Tint</span><span class="dots"></span><span class="amount">$25</span></div>
+            <div class="price-row"><span>Lash &amp; Brow Tint</span><span class="dots"></span><span class="amount">$45</span></div>
+            <div class="price-row"><span>Lash Lift</span><span class="dots"></span><span class="amount">$90</span></div>
+            <div class="price-row"><span>Lash Lift &amp; Tint</span><span class="dots"></span><span class="amount">$110</span></div>
             <h3 style="margin-top:36px;">Facial Waxing</h3>
-            <div class="price-row"><span>Brow</span><span class="dots"></span><span class="amount">$20</span></div>
+            <div class="price-row"><span>Brow</span><span class="dots"></span><span class="amount">$22</span></div>
+            <div class="price-row"><span>Brow Wax &amp; Tint</span><span class="dots"></span><span class="amount">$42</span></div>
             <div class="price-row"><span>Lip</span><span class="dots"></span><span class="amount">$15</span></div>
+            <div class="price-row"><span>Chin</span><span class="dots"></span><span class="amount">$10</span></div>
             <div class="price-row"><span>Ear</span><span class="dots"></span><span class="amount">$15</span></div>
             <div class="price-row"><span>Full Face</span><span class="dots"></span><span class="amount">$30</span></div>
           </div>
-          <div class="price-group">
+          <div class="price-group reveal">
             <h3>Body Waxing</h3>
             <div class="price-row"><span>Underarm</span><span class="dots"></span><span class="amount">$20</span></div>
             <div class="price-row"><span>Lower Arm</span><span class="dots"></span><span class="amount">$30</span></div>
@@ -632,11 +1026,11 @@
             <div class="price-row"><span>Bikini</span><span class="dots"></span><span class="amount">$40</span></div>
             <div class="price-row"><span>Back</span><span class="dots"></span><span class="amount">$50</span></div>
           </div>
-          <div class="price-group">
+          <div class="price-group reveal">
             <h3>Body Treatments</h3>
             <div class="price-row"><span>Big Red Contour Wrap <small>(60 min)</small></span><span class="dots"></span><span class="amount">$113</span></div>
             <div class="price-row"><span>Enzyme Body Scrub <small>(60 min)</small></span><span class="dots"></span><span class="amount">$90</span></div>
-            <div class="price-row"><span>Back Facial <small>(45 min)</small></span><span class="dots"></span><span class="amount">$80</span></div>
+            <div class="price-row"><span>Back Facial <small>(45 min)</small></span><span class="dots"></span><span class="amount">$85</span></div>
             <p style="font-size:0.88rem; color:var(--ink-soft); margin-top:20px;">The Big Red Contour Wrap uses niacin, cinnamon, and aloe for slimming and circulation. The Enzyme Body Scrub is a full-body exfoliation finished with seaweed oil and glycolic lotion.</p>
           </div>
         </div>
@@ -646,16 +1040,17 @@
     <!-- Infrared -->
     <section>
       <div class="wrap">
-        <div class="infrared">
+        <div class="infrared reveal">
+          <svg class="deco" aria-hidden="true" style="right:-40px; top:-60px; width:220px; height:560px; transform:scaleX(-1) rotate(12deg);"><use href="#branch" width="220" height="560"/></svg>
           <div>
-            <p class="eyebrow" style="text-transform:uppercase; letter-spacing:0.28em; font-size:0.75rem; font-weight:500; color:var(--gold); margin-bottom:14px;">New Offering</p>
+            <p class="eyebrow">New Offering</p>
             <h2>Infrared Therapy &amp; Chromotherapy</h2>
-            <p>Light-based wellness therapy that promotes detoxification, recovery, relaxation, and anti-aging benefits — a perfect complement to your skincare routine or on its own.</p>
+            <p>Light-based wellness therapy that promotes detoxification, recovery, relaxation, and anti-aging benefits &mdash; a perfect complement to your skincare routine or on its own.</p>
           </div>
           <div class="pricing">
             <span class="big">$35</span>
             <span class="per">per 30-minute session</span>
-            <div class="package">Package of 5 sessions — <strong>$150</strong></div>
+            <div class="package">Package of 5 sessions &mdash; <strong>$150</strong></div>
             <a class="btn" href="https://squareup.com/appointments/book/ETTYAME6MD66Q" target="_blank" rel="noopener">Book a Session</a>
           </div>
         </div>
@@ -663,14 +1058,17 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact">
+    <section id="contact" class="has-deco">
+      <svg class="deco" aria-hidden="true" style="left:-90px; top:60px; width:210px; height:560px; transform:rotate(6deg); opacity:0.5;"><use href="#branch" width="210" height="560"/></svg>
+      <svg class="deco" aria-hidden="true" style="right:-130px; bottom:-80px; width:440px; height:340px; transform:scaleX(-1);"><use href="#wash" width="440" height="340"/></svg>
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head reveal">
           <p class="eyebrow">Visit Us</p>
           <h2>Contact &amp; Hours</h2>
+          <svg class="leaf-divider" aria-hidden="true" viewBox="0 0 120 24"><use href="#leaf-divider"/></svg>
         </div>
         <div class="contact-grid">
-          <div class="contact-block">
+          <div class="contact-block reveal">
             <h3>Get in Touch</h3>
             <div class="contact-item">
               <span class="label">Location</span>
@@ -693,7 +1091,7 @@
               </a>
             </div>
           </div>
-          <div class="contact-block">
+          <div class="contact-block reveal">
             <h3>Hours of Service</h3>
             <div class="hours-row"><span class="day">Monday</span><span class="closed">Closed</span></div>
             <div class="hours-row"><span class="day">Tuesday</span><span>9am &ndash; 5pm</span></div>
@@ -709,15 +1107,22 @@
 
     <!-- CTA -->
     <div class="cta">
-      <h2>Ready to feel your best <em>in your own skin?</em></h2>
-      <p>Book your appointment online in minutes, or reach out with any questions — Nicole would love to hear from you.</p>
-      <a class="btn" href="https://squareup.com/appointments/book/ETTYAME6MD66Q" target="_blank" rel="noopener">Book an Appointment</a>
+      <svg class="deco" aria-hidden="true" style="left:-60px; bottom:-80px; width:230px; height:600px; transform:rotate(14deg); opacity:0.55;"><use href="#branch" width="230" height="600"/></svg>
+      <svg class="deco" aria-hidden="true" style="right:-60px; bottom:-60px; width:210px; height:540px; transform:scaleX(-1) rotate(12deg); opacity:0.5;"><use href="#euca" width="210" height="540"/></svg>
+      <svg class="deco" aria-hidden="true" style="right:40px; top:30px; width:380px; height:150px; transform:scaleX(-1); opacity:0.6;"><use href="#flourish" width="380" height="150"/></svg>
+      <div class="cta-inner reveal">
+        <h2>Ready to feel your best <em>in your own skin?</em></h2>
+        <div class="ornament" aria-hidden="true"><span class="diamond"></span></div>
+        <p>Book your appointment online in minutes, or reach out with any questions &mdash; Nicole would love to hear from you.</p>
+        <a class="btn" href="https://squareup.com/appointments/book/ETTYAME6MD66Q" target="_blank" rel="noopener">Book an Appointment</a>
+      </div>
     </div>
 
   </main>
 
   <footer>
-    <span class="brand">Beautified <em>Esthetics</em></span>
+    <img class="footer-logo" src="assets/logo.png" alt="Beautified Esthetics">
+    <div class="footer-dots" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
     <p>1240 SE Maynard Rd, Suite 201, Cary, NC 27511 &middot; (919) 279-3326</p>
     <p>&copy; 2026 Beautified Esthetics. All rights reserved.</p>
   </footer>
@@ -735,6 +1140,17 @@
         toggle.setAttribute('aria-expanded', 'false');
       })
     );
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    }
   </script>
 
 </body>
